@@ -9,8 +9,6 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/MR-AliHaashemi/egs"
-	"github.com/MR-AliHaashemi/egs/egerrors"
 	"github.com/er-azh/egmanifest"
 )
 
@@ -44,11 +42,11 @@ type ManifestInfo struct {
 }
 
 type ManifestProvider struct {
-	auth *egs.GrantedToken
+	auth *GrantedToken
 }
 
 func NewManifestProvider() (*ManifestProvider, error) {
-	auth, err := egs.OAuthClientCredentials("Windows/10.0.22000.1.256.64bit", egs.ClientLauncherApp2)
+	auth, err := oAuthClientCredentials()
 	if err != nil {
 		return nil, err
 	}
@@ -62,7 +60,7 @@ func (m *ManifestProvider) GetManifestInfo(platform Platform) (*ManifestInfo, er
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("User-Agent", "UELauncher/13.1.2-18458102+++Portal+Release-Live Windows/10.0.22000.1.256.64bit")
+	req.Header.Set("User-Agent", "UELauncher/14.1.6-21413796+++Portal+Release-Live Windows/10.0.22622.1.256.64bit")
 	req.Header.Set("Authorization", "bearer "+m.auth.AccessToken)
 
 	resp, err := http.DefaultClient.Do(req)
@@ -72,7 +70,7 @@ func (m *ManifestProvider) GetManifestInfo(platform Platform) (*ManifestInfo, er
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, egerrors.FindError(resp.Body)
+		return nil, findEGError(resp.Body)
 	}
 
 	data := &struct {
