@@ -1,4 +1,4 @@
-package fndl
+package egdl
 
 import (
 	"bytes"

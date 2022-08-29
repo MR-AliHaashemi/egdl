@@ -1,5 +1,5 @@
 // ToDo: Refactor the whole file...
-package fndl
+package egdl
 
 import (
 	"bytes"

@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/MR-AliHaashemi/fndl"
+	"github.com/MR-AliHaashemi/egdl"
 	"github.com/er-azh/egmanifest"
 )
 
@@ -19,20 +19,20 @@ func main() {
 	var err error
 	var manifest *egmanifest.BinaryManifest
 	if *url == "latest" {
-		pv, _ := fndl.NewManifestProvider()
-		inf, _ := pv.GetManifestInfo(fndl.Windows)
+		pv, _ := egdl.NewManifestProvider()
+		inf, _ := pv.GetManifestInfo(egdl.Windows)
 		manifest, err = pv.Download(inf)
 		if err != nil {
 			panic(err)
 		}
 	} else {
-		manifest, err = fndl.DownloadManifest(*url)
+		manifest, err = egdl.DownloadManifest(*url)
 		if err != nil {
 			panic(err)
 		}
 	}
 
-	downloader := fndl.NewDownloader(manifest, runtime.NumCPU()*2)
+	downloader := egdl.NewDownloader(manifest, runtime.NumCPU()*2)
 
 	for _, file := range downloader.Files() {
 		path := filepath.Join(*dir, file.FileName)

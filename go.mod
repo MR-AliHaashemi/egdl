@@ -1,4 +1,4 @@
-module github.com/MR-AliHaashemi/fndl
+module github.com/MR-AliHaashemi/egdl
 
 go 1.13
 
