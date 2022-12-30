@@ -1,4 +1,4 @@
-module github.com/MR-AliHaashemi/egdl
+module github.com/haashemi/egdl
 
 go 1.13
 

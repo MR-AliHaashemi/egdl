@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/MR-AliHaashemi/egdl"
+	"github.com/haashemi/egdl"
 	"github.com/er-azh/egmanifest"
 )
 
